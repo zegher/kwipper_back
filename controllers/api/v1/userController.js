@@ -5,10 +5,10 @@ const {User} = require('../../../models/api/v1/User');
 // create new user
 const createUser = async (req, res) => {
     try {
-        const { username, email, password } = req.body;
+        const { first_name, last_name, email, password, role, jeugdbeweging } = req.body;
 
         // create new user with hashed password
-        const newUser = new User({ username, email, password });
+        const newUser = new User({ first_name, last_name, email, password, role, jeugdbeweging });
 
         await newUser.save();
 
@@ -19,8 +19,19 @@ const createUser = async (req, res) => {
     }
 };
 
+// get all users
+const getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find();
+
+        res.status(200).json({ data: { users } });
+    } catch (error) {
+        console.error('Error getting all users:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
 
 // Export the createUser function
 module.exports = {
-    createUser,
+    createUser, getAllUsers
 };
