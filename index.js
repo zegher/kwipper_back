@@ -1,20 +1,3 @@
-// const express = require('express')
-// const app = express()
-// const port = 3000
-// const apiGetter = require('./routers/api/v1/get')
-// const logger = require('./middleware/logger')
-
-// app.get('/', (req, res) => {
-//   res.send('Hello World!')
-// })
-
-
-// app.use('/api/v1/get', apiGetter)
-
-// app.listen(port, () => {
-//   console.log(`Example app listening on port ${port}`)
-// })
-
 // import dependencies
 require('dotenv').config();
 const express = require('express');
@@ -42,12 +25,10 @@ db.once('open', () => {
 });
 
 // routes
-// const jobsRouter = require('./routes/api/v1/jobs');
-
+const usersRouter = require('./routes/api/v1/user');
 
 // route handlers
-// app.use('/api/v1/jobs', jobsRouter);
-
+app.use('/api/v1/user', usersRouter);
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
