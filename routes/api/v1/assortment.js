@@ -11,5 +11,7 @@ router.get('/', assortmentController.getAllAssortment)
 //DELETE assortment by id
 router.delete('/:id', assortmentController.deleteAssortment)
 
+//GET assortment by id
+router.get('/:id', assortmentController.getAssortmentById)
 
 module.exports = router

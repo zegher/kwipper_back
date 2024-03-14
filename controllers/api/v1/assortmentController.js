@@ -14,6 +14,27 @@ const getAllAssortment = async (req, res) => {
     }
 };
 
+//get assortment based on id
+const getAssortmentById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if(!id) {
+            return res.status(400).json({ message: 'Assortment id is required' });
+        }
+        const assortment = await Assortment.findById(id);
+
+        if(!assortment) {
+            return res.status(404).json({ message: 'Assortment not found' });
+        }
+        res.status(200).json({ data: { assortment } });
+    }
+    catch (error) {
+        console.error('Error getting assortment by id:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
 //delete assortment based on id
 const deleteAssortment = async (req, res) => {
     try {
@@ -57,5 +78,5 @@ const createAssortment = async (req, res) => {
 
 // Export the createUser function
 module.exports = {
-    getAllAssortment, createAssortment, deleteAssortment
+    getAllAssortment, createAssortment, deleteAssortment, getAssortmentById
 };
