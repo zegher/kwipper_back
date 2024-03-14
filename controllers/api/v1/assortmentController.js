@@ -15,23 +15,23 @@ const getAllAssortment = async (req, res) => {
 };
 
 // create new assortment
-// const createAssortment = async (req, res) => {
-//     try {
-//         const {posted_by, art_name, art_desc, art_category, condition, size, brand, complete_set, price, available_from, available_until, location, free, premium} = req.body;
+const createAssortment = async (req, res) => {
+    try {
+        const {posted_by, art_name, art_desc, art_category, condition, size, brand, complete_set, price, available_from, available_until, location, free, premium} = req.body;
 
-//         // create new assortment
-//         const newAssortment = new Assortment({ posted_by, art_name, art_desc, art_category, condition, size, brand, complete_set, price, available_from, available_until, location, free, premium});
+        // create new assortment
+        const newAssortment = new Assortment({ posted_by, art_name, art_desc, art_category, condition, size, brand, complete_set, price, available_from, available_until, location, free, premium});
 
-//         await newAssortment.save();
+        await newAssortment.save();
 
-//         res.status(201).json({ message: 'Assortiment created successfully', data: { assortment: newAssortment } });
-//     } catch (error) {
-//         console.error('Error creating assortment:', error);
-//         res.status(500).json({ message: 'Internal Server Error' });
-//     }
-// };
+        res.status(201).json({ message: 'Assortiment created successfully', data: { assortment: newAssortment } });
+    } catch (error) {
+        console.error('Error creating assortment:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
 
 // Export the createUser function
 module.exports = {
-    getAllAssortment,
+    getAllAssortment, createAssortment
 };
