@@ -26,9 +26,11 @@ db.once('open', () => {
 
 // routes
 const usersRouter = require('./routes/api/v1/user');
+const assortmentRouter = require('./routes/api/v1/assortment');
 
 // route handlers
 app.use('/api/v1/user', usersRouter);
+app.use('/api/v1/assortment', assortmentRouter);
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
