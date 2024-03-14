@@ -31,7 +31,32 @@ const getAllUsers = async (req, res) => {
     }
 };
 
+//detete user based on id
+const deleteUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if(!id) {
+            return res.status(400).json({ message: 'User id is required' });
+        }
+
+        //find user by id and then delete user
+        const detetedUser = await User.findByIdAndDelete(id);
+
+        if(!detetedUser) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        res.status(200).json({ message: 'User deleted successfully' });
+
+    } catch (error) {
+        console.error('Error deleting user:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
+
 // Export the createUser function
 module.exports = {
-    createUser, getAllUsers
+    createUser, getAllUsers, deleteUser
 };
