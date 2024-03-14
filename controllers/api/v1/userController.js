@@ -31,6 +31,27 @@ const getAllUsers = async (req, res) => {
     }
 };
 
+//GET user by id
+const getUserById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if(!id) {
+            return res.status(400).json({ message: 'User id is required' });
+        }
+        const user = await User.findById(id);
+
+        if(!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.status(200).json({ data: { user } });
+    }
+    catch (error) {
+        console.error('Error getting user by id:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
 //detete user based on id
 const deleteUser = async (req, res) => {
     try {
@@ -59,5 +80,5 @@ const deleteUser = async (req, res) => {
 
 // Export the createUser function
 module.exports = {
-    createUser, getAllUsers, deleteUser
+    createUser, getAllUsers, deleteUser, getUserById
 };
