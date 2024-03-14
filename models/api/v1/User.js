@@ -27,7 +27,15 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    jeugdbeweging: {
+    what_jeugdbeweging: {
+        type: String,
+        required: true
+    },
+    chiro_name: {
+        type: String,
+        required: true
+    },
+    ad_number: {
         type: String,
         required: true
     }
