@@ -31,11 +31,23 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    chiro_name: {
+    jb_name: {
         type: String,
         required: true
     },
-    ad_number: {
+    group_number: {
+        type: String,
+        required: true
+    },
+    verenigiging_name: {
+        type: String,
+        required: true
+    },
+    has_ondnr: {
+        type: Boolean,
+        required: true
+    },
+    ondnr: {
         type: String,
         required: true
     }
