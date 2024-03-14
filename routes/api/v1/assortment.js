@@ -8,5 +8,8 @@ router.post('/', assortmentController.createAssortment)
 // GET new assortment
 router.get('/', assortmentController.getAllAssortment)
 
+//DELETE assortment by id
+router.delete('/:id', assortmentController.deleteAssortment)
+
 
 module.exports = router
