@@ -80,17 +80,17 @@ const getAssortmentByPostedBy = async (req, res) => {
         const { posted_by } = req.params;
 
         if(!posted_by) {
-            return res.status(400).json({ message: 'Posted by is required' });
+            return res.status(400).json({ message: 'Username is required' });
         }
         const assortment = await Assortment.find({ posted_by });
 
         if(!assortment) {
-            return res.status(404).json({ message: 'Assortment not found' });
+            return res.status(404).json({ message: 'This user has not posted anything (yet).' });
         }
         res.status(200).json({ data: { assortment } });
     }
     catch (error) {
-        console.error('Error getting assortment by posted by:', error);
+        console.error('Error getting assortment by user error:', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 }
