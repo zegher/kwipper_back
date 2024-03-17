@@ -74,9 +74,29 @@ const createAssortment = async (req, res) => {
     }
 };
 
+//get assortment based on posted_by
+const getAssortmentByPostedBy = async (req, res) => {
+    try {
+        const { posted_by } = req.params;
+
+        if(!posted_by) {
+            return res.status(400).json({ message: 'Posted by is required' });
+        }
+        const assortment = await Assortment.find({ posted_by });
+
+        if(!assortment) {
+            return res.status(404).json({ message: 'Assortment not found' });
+        }
+        res.status(200).json({ data: { assortment } });
+    }
+    catch (error) {
+        console.error('Error getting assortment by posted by:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+}
 
 
 // Export the createUser function
 module.exports = {
-    getAllAssortment, createAssortment, deleteAssortment, getAssortmentById
+    getAllAssortment, createAssortment, deleteAssortment, getAssortmentById, getAssortmentByPostedBy
 };

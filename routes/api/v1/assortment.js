@@ -14,4 +14,7 @@ router.delete('/:id', assortmentController.deleteAssortment)
 //GET assortment by id
 router.get('/:id', assortmentController.getAssortmentById)
 
+//GET assortment by posted_by
+router.get('/posted_by/:posted_by', assortmentController.getAssortmentByPostedBy)
+
 module.exports = router
