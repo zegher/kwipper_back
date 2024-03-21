@@ -76,7 +76,8 @@ const deleteUser = async (req, res) => {
     }
 };
 
-//change user by id
+//change user information
+
 
 // Export the createUser function
 module.exports = {

@@ -25,11 +25,11 @@ const AssortmentSchema = new Schema({
     },
     size: {
         type: String,
-        required: true
+        required: false
     },
     brand: {
         type: String,
-        required: true
+        required: false
     },
     complete_set: {
         type: Boolean,
