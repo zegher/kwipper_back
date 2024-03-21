@@ -74,10 +74,30 @@ const postReview = async (req, res) => {
     }
 };
 
+//delete review
+const deleteReview = async (req, res) => {
+    try {
+        const { id } = req.params;
 
+        if(!id) {
+            return res.status(400).json({ message: 'Review id is required' });
+        }
+
+        const deletedReview = await Review.findByIdAndDelete(id);
+
+        if(!deletedReview) {
+            return res.status(404).json({ message: 'Review not found' });
+        }
+
+        res.status(200).json({ message: 'Review deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting review:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
 
 // Export the createUser function
 module.exports = {
-    getAllReviews, postReview, getReviewsById, getReviewsByUser
+    getAllReviews, postReview, getReviewsById, getReviewsByUser, deleteReview
 };
 

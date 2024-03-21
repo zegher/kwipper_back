@@ -14,4 +14,7 @@ router.get('/posted_by/:posted_by', reviewController.getReviewsByUser);
 //post review
 router.post('/', reviewController.postReview);
 
+//delete review by id
+router.delete('/:id', reviewController.deleteReview);
+
 module.exports = router
