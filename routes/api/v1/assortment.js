@@ -17,4 +17,7 @@ router.get('/:id', assortmentController.getAssortmentById)
 //GET assortment by posted_by
 router.get('/posted_by/:posted_by', assortmentController.getAssortmentByPostedBy)
 
+//PUT assortment
+router.put('/:id', assortmentController.updateAssortment)
+
 module.exports = router

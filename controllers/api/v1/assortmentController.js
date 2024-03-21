@@ -95,8 +95,30 @@ const getAssortmentByPostedBy = async (req, res) => {
     }
 }
 
+//update assortment data
+const updateAssortment = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const assortmentData = req.body;
+
+        if (!id) {
+            return res.status(400).json({ message: 'Assortment id is required' });
+        }
+
+        const updatedAssortment = await Assortment.findByIdAndUpdate(id, assortmentData, { new: true });
+
+        if (!updatedAssortment) {
+            return res.status(404).json({ message: 'Assortment not found' });
+        }
+
+        res.status(200).json({ message: 'Assortment updated successfully', data: { assortment: updatedAssortment } });
+    } catch (error) {
+        console.error('Error updating assortment:', error);
+        res.status(500).json({ message: 'Internal Server Error - updateAssortment' });
+    }
+};
 
 // Export the createUser function
 module.exports = {
-    getAllAssortment, createAssortment, deleteAssortment, getAssortmentById, getAssortmentByPostedBy
+    getAllAssortment, createAssortment, deleteAssortment, getAssortmentById, getAssortmentByPostedBy, updateAssortment
 };
