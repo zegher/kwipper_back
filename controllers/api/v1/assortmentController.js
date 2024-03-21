@@ -10,7 +10,7 @@ const getAllAssortment = async (req, res) => {
         res.status(200).json({ data: { assortment } });
     } catch (error) {
         console.error('Error getting all assortment:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
+        res.status(500).json({ message: 'Internal Server Error - getAllAssortment' });
     }
 };
 
@@ -31,7 +31,7 @@ const getAssortmentById = async (req, res) => {
     }
     catch (error) {
         console.error('Error getting assortment by id:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
+        res.status(500).json({ message: 'Internal Server Error - getAssortmentById' });
     }
 };
 
@@ -53,7 +53,7 @@ const deleteAssortment = async (req, res) => {
         res.status(200).json({ message: 'Assortment deleted successfully' });
     } catch (error) {
         console.error('Error deleting assortment:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
+        res.status(500).json({ message: 'Internal Server Error - deleteAssortment' });
     }
 };
 
@@ -70,7 +70,7 @@ const createAssortment = async (req, res) => {
         res.status(201).json({ message: 'Assortiment created successfully', data: { assortment: newAssortment } });
     } catch (error) {
         console.error('Error creating assortment:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
+        res.status(500).json({ message: 'Internal Server Error - createAssortment' });
     }
 };
 
@@ -91,7 +91,7 @@ const getAssortmentByPostedBy = async (req, res) => {
     }
     catch (error) {
         console.error('Error getting assortment by user error:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
+        res.status(500).json({ message: 'Internal Server Error - getAssortmentByPostedBy' });
     }
 }
 

@@ -8,7 +8,7 @@ const getAllReviews = async (req, res) => {
         res.status(200).json({ data: { review } });
     } catch (error) {
         console.error('Error getting all reviews:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
+        res.status(500).json({ message: 'Internal Server Error - getAllReviews' });
     }
 };
 
@@ -29,7 +29,7 @@ const getReviewsById = async (req, res) => {
     }
     catch (error) {
         console.error('Error getting review by id:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
+        res.status(500).json({ message: 'Internal Server Error - getReviewsById' });
     }
 };
 
@@ -50,7 +50,7 @@ const getReviewsByUser = async (req, res) => {
     }
     catch (error) {
         console.error('Error getting review by id:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
+        res.status(500).json({ message: 'Internal Server Error - getReviewsByUser (username)' });
     }
 };
 
@@ -70,7 +70,7 @@ const postReview = async (req, res) => {
         res.status(201).json({ message: 'Review created successfully', data: { review: newReview }});
     } catch (error) {
         console.error('Error posting review:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
+        res.status(500).json({ message: 'Internal Server Error - postReview' });
     }
 };
 
@@ -92,7 +92,7 @@ const deleteReview = async (req, res) => {
         res.status(200).json({ message: 'Review deleted successfully' });
     } catch (error) {
         console.error('Error deleting review:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
+        res.status(500).json({ message: 'Internal Server Error - deleteReview' });
     }
 };
 
