@@ -33,6 +33,27 @@ const getReviewsById = async (req, res) => {
     }
 };
 
+//get users based by posted_by
+const getReviewsByUser = async (req, res) => {
+    try {
+        const { posted_by } = req.params;
+
+        if(!posted_by) {
+            return res.status(400).json({ message: 'Name is required' });
+        }
+        const review = await Review.find({ posted_by });
+
+        if(!review) {
+            return res.status(404).json({ message: 'Review not found' });
+        }
+        res.status(200).json({ data: { review } });
+    }
+    catch (error) {
+        console.error('Error getting review by id:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
 //post review
 const postReview = async (req, res) => {
     try {
@@ -53,8 +74,10 @@ const postReview = async (req, res) => {
     }
 };
 
+
+
 // Export the createUser function
 module.exports = {
-    getAllReviews, postReview, getReviewsById
+    getAllReviews, postReview, getReviewsById, getReviewsByUser
 };
 
