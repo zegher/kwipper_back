@@ -1,0 +1,9 @@
+TO DO:
+
+User: 
+-> PUT USER 
+    + Prioriteit: wachtwoord (met tokens via e-mail)
+    + Alle andere dingen moeten aangepast kunnen worden
+
+Asortiment
+-> PUT POST
