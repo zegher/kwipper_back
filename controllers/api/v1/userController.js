@@ -5,10 +5,10 @@ const {User} = require('../../../models/api/v1/User');
 // create new user
 const createUser = async (req, res) => {
     try {
-        const { first_name, last_name, email, phone, password, role, what_jeugdbeweging, jb_name, group_number, verenigiging_name, has_ondnr, ondnr } = req.body;
+        const { first_name, last_name, email, phone, password, role, what_jeugdbeweging, jb_name, group_number, verenigiging_name, has_ondnr, ondnr, straatnaam, huisnummer, postcode, gemeente} = req.body;
 
         // create new user with hashed password
-        const newUser = new User({ first_name, last_name, email, phone, password, role, what_jeugdbeweging, jb_name, group_number, verenigiging_name, has_ondnr, ondnr});
+        const newUser = new User({ first_name, last_name, email, phone, password, role, what_jeugdbeweging, jb_name, group_number, verenigiging_name, has_ondnr, ondnr, straatnaam, huisnummer, postcode, gemeente});
 
         await newUser.save();
 

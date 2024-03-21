@@ -29,31 +29,47 @@ const UserSchema = new Schema({
     },
     what_jeugdbeweging: {
         type: String,
-        required: true
+        required: false
     },
     jb_name: {
         type: String,
-        required: true
+        required: false
     },
     group_number: {
         type: String,
-        required: true
+        required: false
     },
     verenigiging_name: {
         type: String,
-        required: true
+        required: false
     },
     has_ondnr: {
         type: Boolean,
-        required: true
+        required: false
     },
     ondnr: {
+        type: String,
+        required: false
+    },
+    straatnaam: {
+        type: String,
+        required: true
+    },
+    huisnummer: {
+        type: Number,
+        required: true
+    },
+    postcode: {
+        type: Number,
+        required: true
+    },
+    gemeente: {
         type: String,
         required: true
     }
 });
-
 const User = mongoose.model('User', UserSchema);
+
 
 module.exports = {
     User,
