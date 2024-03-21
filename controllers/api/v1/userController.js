@@ -76,10 +76,34 @@ const deleteUser = async (req, res) => {
     }
 };
 
-//change user information
+// Update user information
+const putUser = async (req, res) => {
+    try {
+        const { id } = req.params; // Extract user ID from request parameters
+        const userDataToUpdate = req.body; // Get updated user data from request body
 
+        // Check if user ID is provided
+        if (!id) {
+            return res.status(400).json({ message: 'User id is required' });
+        }
+
+        // Find the user by ID and update their information
+        const updatedUser = await User.findByIdAndUpdate(id, userDataToUpdate, { new: true });
+
+        // Check if the user exists
+        if (!updatedUser) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Respond with the updated user data
+        res.status(200).json({ message: 'User information updated successfully', data: { user: updatedUser } });
+    } catch (error) {
+        console.error('Error updating user information:', error);
+        res.status(500).json({ message: 'Internal Server Error - updateUser' });
+    }
+};
 
 // Export the createUser function
 module.exports = {
-    createUser, getAllUsers, deleteUser, getUserById
+    createUser, getAllUsers, deleteUser, getUserById, putUser
 };
