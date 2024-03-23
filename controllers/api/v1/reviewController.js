@@ -96,7 +96,7 @@ const deleteReview = async (req, res) => {
     }
 };
 
-//put review but when trying to update a review, it gives a message saying "You cannot edit a review"
+//put review 
 const putReview = async (req, res) => {
     try {
         const { id } = req.params;
@@ -120,9 +120,31 @@ const putReview = async (req, res) => {
     }
 };
 
+//get reviews by rating
+const getReviewsByRating = async (req, res) => {
+    try {
+        const { rating } = req.params;
+
+        if(!rating) {
+            return res.status(400).json({ message: 'Rating is required' });
+        }
+        const review = await Review.find({ rating });
+
+        if(!review) {
+            return res.status(404).json({ message: 'Review not found' });
+        }
+        res.status(200).json({ data: { review } });
+    }
+    catch (error) {
+        console.error('Error getting review by rating:', error);
+        res.status(500).json({ message: 'Internal Server Error - getReviewsByRating' });
+    }
+};
+
+
 
 // Export the createUser function
 module.exports = {
-    getAllReviews, postReview, getReviewsById, getReviewsByUser, deleteReview, putReview
+    getAllReviews, postReview, getReviewsById, getReviewsByUser, deleteReview, putReview, getReviewsByRating
 };
 

@@ -11,6 +11,9 @@ router.get('/:id', reviewController.getReviewsById);
 //get review by posted_by
 router.get('/posted_by/:posted_by', reviewController.getReviewsByUser);
 
+//get review by rating
+router.get('/rating/:rating', reviewController.getReviewsByRating);
+
 //post review
 router.post('/', reviewController.postReview);
 
