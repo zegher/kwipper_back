@@ -1,6 +1,6 @@
 const {User} = require('../../../models/api/v1/User');
 const bcrypt = require('bcryptjs');
-
+const nodemailer = require('nodemailer');
 // Import the necessary modules and dependencies
 
 // create new user
@@ -17,12 +17,40 @@ const createUser = async (req, res) => {
 
         await newUser.save();
 
+        //send email to user
+        // await sendEmail(email, 'Welcome to our platform', 'You have successfully created an account on our platform');
+
         res.status(201).json({ message: 'User created successfully', data: { user: newUser } });
     } catch (error) {
         console.error('Error creating user:', error);
         res.status(500).json({ message: 'Internal Server Error - createUser' });
     }
 };
+
+ //send email to user
+const sendEmail = async (email, subject, text) => {
+    try {
+        const transporter = nodemailer.createTransport({
+            service: 'hotmail',
+            port: 587,
+            secure: false,
+            auth: {
+                user: 'username',
+                pass: 'password'
+            }
+        }); 
+
+        await transporter.sendMail({
+            from: 'username',
+            to: email,
+            subject: subject,
+            text: text
+        });
+    } catch (error) {
+        console.error('Error sending email:', error);
+    }
+};
+
 
 // get all users
 const getAllUsers = async (req, res) => {
