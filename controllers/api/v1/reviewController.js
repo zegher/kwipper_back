@@ -126,7 +126,7 @@ const getReviewsByRating = async (req, res) => {
         const { rating } = req.params;
 
         if(!rating) {
-            return res.status(400).json({ message: 'Rating is required' });
+            return res.status(400).json({ message: 'Rating  number is required' });
         }
         const review = await Review.find({ rating });
 

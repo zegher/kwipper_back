@@ -1,4 +1,5 @@
 const {User} = require('../../../models/api/v1/User');
+const bcrypt = require('bcryptjs');
 
 // Import the necessary modules and dependencies
 
@@ -7,8 +8,12 @@ const createUser = async (req, res) => {
     try {
         const { first_name, last_name, email, phone, password, role, what_jeugdbeweging, jb_name, group_number, verenigiging_name, has_ondnr, ondnr, straatnaam, huisnummer, postcode, gemeente} = req.body;
 
+        //hash password
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
         // create new user with hashed password
-        const newUser = new User({ first_name, last_name, email, phone, password, role, what_jeugdbeweging, jb_name, group_number, verenigiging_name, has_ondnr, ondnr, straatnaam, huisnummer, postcode, gemeente});
+        const newUser = new User({ first_name, last_name, email, phone, password: hashedPassword, role, what_jeugdbeweging, jb_name, group_number, verenigiging_name, has_ondnr, ondnr, straatnaam, huisnummer, postcode, gemeente});
 
         await newUser.save();
 
