@@ -134,38 +134,35 @@ const putUser = async (req, res) => {
         console.error('Error updating user information:', error);
         res.status(500).json({ message: 'Internal Server Error - updateUser' });
     }
-
-    // Login user
-    const loginUser = async (req, res) => {
-        try {
-            const { email, password } = req.body; // Extract email and password from request body
-
-            // Find the user by email
-            const user = await User.findOne({ email });
-
-            // Check if the user exists
-            if (!user) {
-                return res.status(404).json({ message: 'User not found' });
-            }
-
-            // Check if the password is correct
-            const isPasswordValid = await bcrypt.compare(password, user.password);
-
-            if (!isPasswordValid) {
-                return res.status(400).json({ message: 'Invalid password' });
-            }
-
-            // Respond with the user data
-            res.status(200).json({ message: 'User logged in successfully', data: { user } });
-
-        } catch (error) {
-            res.status(500).json({ message: 'Server error' });
-        }
-    }
-
-
-
 };
+
+// Login user
+const loginUser = async (req, res) => {
+    try {
+        const { email, password } = req.body; // Extract email and password from request body
+
+        // Find the user by email
+        const user = await User.findOne({ email });
+
+        // Check if the user exists
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Check if the password is correct
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+
+        if (!isPasswordValid) {
+            return res.status(400).json({ message: 'Invalid password' });
+        }
+
+        // Respond with the user data
+        res.status(200).json({ message: 'User logged in successfully', data: { user } });
+
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+}
 
 // Export the createUser function
 module.exports = {
