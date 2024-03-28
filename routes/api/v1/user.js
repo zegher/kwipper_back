@@ -17,4 +17,7 @@ router.get('/:id', userController.getUserById)
 //PUT user 
 router.put('/:id', userController.putUser)
 
+//Login user
+router.post('/login', userController.loginUser)
+
 module.exports = router
