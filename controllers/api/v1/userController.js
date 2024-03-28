@@ -12,13 +12,24 @@ const createUser = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
+        //if user first_name = admin, give error
+        // if(first_name === 'admin') {
+        //     return res.status(400).json({ message: 'Invalid first name' });
+        // };
+
         // create new user with hashed password
         const newUser = new User({ first_name, last_name, email, phone, password: hashedPassword, role, what_jeugdbeweging, jb_name, group_number, verenigiging_name, has_ondnr, ondnr, straatnaam, huisnummer, postcode, gemeente});
+
+        //if email is already used, give error
+        const existingUser = await User.findOne({ email });
+        if(existingUser) {
+            return res.status(400).json({ message: 'Email already used' });
+        }
 
         await newUser.save();
 
         //send email to user
-        // await sendEmail(email, 'Welcome to our platform', 'You have successfully created an account on our platform');
+        await sendEmail(email, 'Welcome to our platform', 'You have successfully created an account on our platform');
 
         res.status(201).json({ message: 'User created successfully', data: { user: newUser } });
     } catch (error) {
@@ -35,8 +46,8 @@ const sendEmail = async (email, subject, text) => {
             port: 587,
             secure: false,
             auth: {
-                user: 'username',
-                pass: 'password'
+                user: 'zegherb@hotmail.com',
+                pass: 'azerty'
             }
         }); 
 
