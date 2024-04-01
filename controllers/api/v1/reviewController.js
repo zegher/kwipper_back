@@ -65,6 +65,11 @@ const postReview = async (req, res) => {
 
         const newReview = new Review({ posted_by, user_reviewed, rating, description });
 
+        //rating has to be between 1 and 5, if not return message saying "Foutieve rating: hou het tussen 1 en 5".
+        if(rating < 1 || rating > 5) {
+            return res.status(400).json({ message: 'Foutieve rating: hou het tussen 1 en 5' });
+        }
+
         await newReview.save();
 
         res.status(201).json({ message: 'Review created successfully', data: { review: newReview }});

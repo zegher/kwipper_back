@@ -46,28 +46,28 @@ const createUser = async (req, res) => {
 };
 
  //send email to user
-const sendEmail = async (email, subject, text) => {
-    try {
-        const transporter = nodemailer.createTransport({
-            service: 'hotmail',
-            port: 587,
-            secure: false,
-            auth: {
-                user: 'zegherb@hotmail.com',
-                pass: 'azerty'
-            }
-        }); 
+// const sendEmail = async (email, subject, text) => {
+//     try {
+//         const transporter = nodemailer.createTransport({
+//             service: 'hotmail',
+//             port: 587,
+//             secure: false,
+//             auth: {
+//                 user: 'zegherb@hotmail.com',
+//                 pass: 'azerty'
+//             }
+//         }); 
 
-        await transporter.sendMail({
-            from: 'username',
-            to: email,
-            subject: subject,
-            text: text
-        });
-    } catch (error) {
-        console.error('Error sending email:', error);
-    }
-};
+//         await transporter.sendMail({
+//             from: 'username',
+//             to: email,
+//             subject: subject,
+//             text: text
+//         });
+//     } catch (error) {
+//         console.error('Error sending email:', error);
+//     }
+// };
 
 
 // get all users
