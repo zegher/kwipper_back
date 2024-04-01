@@ -1,4 +1,5 @@
 const {Review} = require('../../../models/api/v1/Review');
+const {User} = require('../../../models/api/v1/User');
 
 //get all reviews
 const getAllReviews = async (req, res) => {
@@ -80,6 +81,10 @@ const postReview = async (req, res) => {
             return res.status(400).json({ message: 'Je kan jezelf geen review geven' });
         }
 
+        //if posted_by does not exist in database User.js, return message saying "User bestaat niet"
+        // if(!User.findById(posted_by)) {
+        //     return res.status(400).json({ message: 'User bestaat niet' });
+        // }
 
         await newReview.save();
 
