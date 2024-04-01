@@ -70,6 +70,11 @@ const postReview = async (req, res) => {
             return res.status(400).json({ message: 'Foutieve rating: hou het tussen 1 en 5' });
         }
 
+        //description characters cannot be more than 4000
+        if(description.length > 4000) {
+            return res.status(400).json({ message: 'Beschrijvng mag niet meer dan 4000 karakters zijn.' });
+        }
+
         await newReview.save();
 
         res.status(201).json({ message: 'Review created successfully', data: { review: newReview }});
