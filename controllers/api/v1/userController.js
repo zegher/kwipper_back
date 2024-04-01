@@ -26,10 +26,17 @@ const createUser = async (req, res) => {
             return res.status(400).json({ message: 'Email already used' });
         }
 
+        //if group number already is used, give a message saying "Je hebt al een account met dit groepsnummer. Vraag een nieuw wachtwoord aan of neem contact op met de helpdesk."
+        const existingGroupNumber = await User.findOne({ group_number });
+        if(existingGroupNumber) {
+            return res.status(400).json({ message: 'Je hebt al een account met dit groepsnummer. Vraag een nieuw wachtwoord aan of neem contact op met de helpdesk.' });
+        }
+
+
         await newUser.save();
 
         //send email to user
-        await sendEmail(email, 'Welcome to our platform', 'You have successfully created an account on our platform');
+        // await sendEmail(email, 'Welcome to our platform', 'You have successfully created an account on our platform');
 
         res.status(201).json({ message: 'User created successfully', data: { user: newUser } });
     } catch (error) {
