@@ -75,6 +75,12 @@ const postReview = async (req, res) => {
             return res.status(400).json({ message: 'Beschrijvng mag niet meer dan 4000 karakters zijn.' });
         }
 
+        //if posted_by & user_reviewed are the same, return message saying "Je kan jezelf geen review geven"
+        if(posted_by === user_reviewed) {
+            return res.status(400).json({ message: 'Je kan jezelf geen review geven' });
+        }
+
+
         await newReview.save();
 
         res.status(201).json({ message: 'Review created successfully', data: { review: newReview }});
