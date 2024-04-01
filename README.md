@@ -5,7 +5,8 @@ Our goal is to make it cheaper and more sustainable for people to go on vacation
 In this repository you can see our little back-end. Feel free to take a look. 
 
 Greetings, 
-William, Zegher & Jarno
+William, Zegher & Jarno    
+
 Thomas More - Belgium
  
 🎪🏕️⛺
