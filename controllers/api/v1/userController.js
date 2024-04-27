@@ -1,7 +1,41 @@
 const {User} = require('../../../models/api/v1/User');
+
+
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
-// Import the necessary modules and dependencies
+
+//GET user by id
+const getUserById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if(!id) {
+            return res.status(400).json({ message: 'User id is required' });
+        }
+        const user = await User.findById(id);
+
+        if(!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.status(200).json({ data: { user } });
+    }
+    catch (error) {
+        console.error('Error getting user by id:', error);
+        res.status(500).json({ message: 'Internal Server Error - getUserById' });
+    }
+};
+
+// get all users
+const getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find();
+
+        res.status(200).json({ data: { users } });
+    } catch (error) {
+        console.error('Error getting all users:', error);
+        res.status(500).json({ message: 'Internal Server Error - getAllUsers' });
+    }
+};
 
 // create new user
 const createUser = async (req, res) => {
@@ -70,39 +104,6 @@ const createUser = async (req, res) => {
 // };
 
 
-// get all users
-const getAllUsers = async (req, res) => {
-    try {
-        const users = await User.find();
-
-        res.status(200).json({ data: { users } });
-    } catch (error) {
-        console.error('Error getting all users:', error);
-        res.status(500).json({ message: 'Internal Server Error - getAllUsers' });
-    }
-};
-
-//GET user by id
-const getUserById = async (req, res) => {
-    try {
-        const { id } = req.params;
-
-        if(!id) {
-            return res.status(400).json({ message: 'User id is required' });
-        }
-        const user = await User.findById(id);
-
-        if(!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-        res.status(200).json({ data: { user } });
-    }
-    catch (error) {
-        console.error('Error getting user by id:', error);
-        res.status(500).json({ message: 'Internal Server Error - getUserById' });
-    }
-};
-
 //detete user based on id
 const deleteUser = async (req, res) => {
     try {
@@ -154,7 +155,10 @@ const putUser = async (req, res) => {
     }
 };
 
+
 // Export the createUser function
 module.exports = {
     createUser, getAllUsers, deleteUser, getUserById, putUser
 };
+
+// getAllUsers2, createUser2,

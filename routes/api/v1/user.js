@@ -17,4 +17,10 @@ router.get('/:id', userController.getUserById)
 //PUT user 
 router.put('/:id', userController.putUser)
 
+// // // get new assortment 2
+// router.get('/two/:id', userController.getAllUsers2)
+
+// // // post new assortment 2
+// router.post('/two', userController.createUser2)
+
 module.exports = router
