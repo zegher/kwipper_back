@@ -28,11 +28,13 @@ db.once('open', () => {
 const usersRouter = require('./routes/api/v1/user');
 const assortmentRouter = require('./routes/api/v1/assortment');
 const reviewsRouter = require('./routes/api/v1/review');
+const twoAssortmentRouter = require('./routes/api/v1/twoassortment');
 
 // route handlers
 app.use('/api/v1/user', usersRouter);
 app.use('/api/v1/assortment', assortmentRouter);
 app.use('/api/v1/reviews', reviewsRouter);
+app.use('/api/v1/two', twoAssortmentRouter);
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

@@ -1,38 +1,7 @@
 // Initialize express router
 const {Assortment} = require('../../../models/api/v1/assortment');
-const {Atester} = require('../../../models/api/v1/ATester');
 
 // Import the necessary modules and dependencies
-
-//get all assortment based on tester model
-const getAss2 = async (req, res) => {
-
-    try {
-        const assortment = await Atester.find();
-        res.status(200).json({ data: { assortment } });
-    } catch (error) {
-        console.error('Error getting all assortment:', error);
-        res.status(500).json({ message: 'Internal Server Error - getAllAssortment' });
-    }
-}
-
-//post assortment using Tester model
-const createAssortment2 = async (req, res) => {
-
-    try {
-        const { art_name, price, waarborg, available_from, available_until, art_desc, art_category, condition, size, brand, complete_set, free, premium, posted_by, location } = req.body;
-
-        // create new assortment
-        const newAssortment2 = new Atester({ art_name, price, waarborg, available_from, available_until, art_desc, art_category, condition, size, brand, complete_set, free, premium, posted_by, location});
-
-        await newAssortment2.save();
-
-        res.status(201).json({ message: 'Assortiment created successfully', data: { assortment: newAssortment2 } });
-    } catch (error) {
-        console.error('Error creating assortment:', error);
-        res.status(500).json({ message: 'Internal Server Error - createAssortment' });
-    }
-}
 
 // create new assortment
 const createAssortment = async (req, res) => {
@@ -79,6 +48,7 @@ const getAssortmentById = async (req, res) => {
         res.status(200).json({ data: { assortment } });
     }
     catch (error) {
+        // getAss2();
         console.error('Error getting assortment by id:', error);
         res.status(500).json({ message: 'Internal Server Error - getAssortmentById' });
     }
@@ -153,5 +123,5 @@ const updateAssortment = async (req, res) => {
 
 // Export the createUser function
 module.exports = {
-    getAss2, createAssortment2, getAllAssortment, createAssortment, deleteAssortment, getAssortmentById, getAssortmentByPostedBy, updateAssortment
+    getAllAssortment, createAssortment, deleteAssortment, getAssortmentById, getAssortmentByPostedBy, updateAssortment
 };

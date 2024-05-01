@@ -22,9 +22,9 @@ router.get('/posted_by/:posted_by', assortmentController.getAssortmentByPostedBy
 router.put('/:id', assortmentController.updateAssortment)
 
 //get assortment2
-// router.get('/two/:id', assortmentController.getAss2)
+// router.get('/two', assortmentController.getAss2)
 
 //post assortment2
-router.post('/two', assortmentController.createAssortment2)
+// router.post('/two', assortmentController.createAssortment2)
 
 module.exports = router

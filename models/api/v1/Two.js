@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // schema for assortiment
-const AtesterSchema = new Schema({
+const TwoassortmentSchema = new Schema({
     item: {
         art_name: {
             type: String,
@@ -71,8 +71,8 @@ const AtesterSchema = new Schema({
     }
 });
 
-const Atester = mongoose.model('Atester', AtesterSchema);
+const Two = mongoose.model('Two', TwoassortmentSchema);
 
 module.exports = {
-    Atester,
+    Two,
 };
