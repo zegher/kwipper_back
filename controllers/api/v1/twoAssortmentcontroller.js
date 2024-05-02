@@ -65,7 +65,23 @@ const deleteAssortment = async (req, res) => {
     }
 };
 
+//get assortiment by posted_by
+const getAssortmentByUser = async (req, res) => {
+    try {
+        const { posted_by } = req.params;
+
+        if(!posted_by) {
+            return res.status(400).json({ message: 'User id is required' });
+        }
+        const assortment = await Two.find({ 'user.posted_by': posted_by });
+        res.status(200).json({ data: { assortment } });
+    } catch (error) {
+        console.error('Error getting assortment by user:', error);
+        res.status(500).json({ message: 'Internal Server Error - getAssortmentByUser' });
+    }
+}
+
 // Export the createUser function
 module.exports = {
-    getAss2, createAssortment2, getAssortmentById, deleteAssortment
+    getAss2, createAssortment2, getAssortmentById, deleteAssortment, getAssortmentByUser
 };

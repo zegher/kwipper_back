@@ -14,4 +14,6 @@ router.get('/:id', TwoassortmentController.getAssortmentById)
 // deletea ssortment2 by id
 router.delete('/:id', TwoassortmentController.deleteAssortment)
 
+router.get('/user/:posted_by', TwoassortmentController.getAssortmentByUser)
+
 module.exports = router
