@@ -58,7 +58,6 @@ const TwoassortmentSchema = new Schema({
             required: false
         },
     },
-    
     user: {
         posted_by: {
             type: String,

@@ -8,4 +8,7 @@ router.get('/', TwoassortmentController.getAss2)
 // post assortment2
 router.post('/', TwoassortmentController.createAssortment2)
 
+// get assortment2 by id
+router.get('/:id', TwoassortmentController.getAssortmentById)
+
 module.exports = router

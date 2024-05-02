@@ -32,7 +32,23 @@ const createAssortment2 = async (req, res) => {
     }
 }
 
+//get assortment based on id
+const getAssortmentById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if(!id) {
+            return res.status(400).json({ message: 'Assortment id is required' });
+        }
+        const assortment = await Two.findById(id);
+        res.status(200).json({ data: { assortment } });
+    } catch (error) {
+        console.error('Error getting assortment by id:', error);
+        res.status(500).json({ message: 'Internal Server Error - getAssortment2ById' });
+    }
+}
+
 // Export the createUser function
 module.exports = {
-    getAss2, createAssortment2
+    getAss2, createAssortment2, getAssortmentById
 };
