@@ -56,7 +56,7 @@ const TwoassortmentSchema = new Schema({
         premium: {
             type: Boolean,
             required: false
-        },
+        }
     },
     user: {
         posted_by: {
