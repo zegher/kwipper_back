@@ -11,4 +11,7 @@ router.post('/', TwoassortmentController.createAssortment2)
 // get assortment2 by id
 router.get('/:id', TwoassortmentController.getAssortmentById)
 
+// deletea ssortment2 by id
+router.delete('/:id', TwoassortmentController.deleteAssortment)
+
 module.exports = router

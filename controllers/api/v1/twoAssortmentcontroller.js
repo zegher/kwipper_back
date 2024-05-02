@@ -48,7 +48,24 @@ const getAssortmentById = async (req, res) => {
     }
 }
 
+//delete assortment based on id
+const deleteAssortment = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if(!id) {
+            return res.status(400).json({ message: 'Assortment id is required' });
+        }
+        const deletedAssortment = await Two.findByIdAndDelete(id);
+        res.status(200).json({ message: 'Assortment deleted successfully', data: { deletedAssortment } });
+    }
+    catch (error) {
+        console.error('Error deleting assortment:', error);
+        res.status(500).json({ message: 'Internal Server Error - deleteAssortment2' });
+    }
+};
+
 // Export the createUser function
 module.exports = {
-    getAss2, createAssortment2, getAssortmentById
+    getAss2, createAssortment2, getAssortmentById, deleteAssortment
 };
