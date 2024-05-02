@@ -5,4 +5,7 @@ const TwoassortmentController = require('../../../controllers/api/v1/twoAssortme
 // get assortment2
 router.get('/', TwoassortmentController.getAss2)
 
+// post assortment2
+router.post('/', TwoassortmentController.createAssortment2)
+
 module.exports = router
