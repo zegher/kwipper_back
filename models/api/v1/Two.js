@@ -59,6 +59,10 @@ const TwoassortmentSchema = new Schema({
         }
     },
     user: {
+
+        //posted by is the user id from the user collection
+        
+
         posted_by: {
             type: String,
             required: false
