@@ -1,5 +1,5 @@
 // Initialize express router
-const {Assortment} = require('../../../models/api/v1/assortment');
+const {Assortment} = require('../../../models/api/v1/Assortment');
 
 // Import the necessary modules and dependencies
 //<aa
