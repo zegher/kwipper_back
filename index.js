@@ -29,12 +29,14 @@ const usersRouter = require('./routes/api/v1/user');
 const assortmentRouter = require('./routes/api/v1/assortment');
 const reviewsRouter = require('./routes/api/v1/review');
 const twoAssortmentRouter = require('./routes/api/v1/twoassortment');
+const tokenRouter = require("./routes/api/v1/token");   
 
 // route handlers
 app.use('/api/v1/user', usersRouter);
 app.use('/api/v1/assortment', assortmentRouter);
 app.use('/api/v1/reviews', reviewsRouter);
 app.use('/api/v1/two', twoAssortmentRouter);
+app.use('/api/v1/token', tokenRouter);
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
