@@ -100,7 +100,7 @@ const createUser = async (req, res) => {
         //send email to user
         // await sendEmail(email, 'Welcome to our platform', 'You have successfully created an account on our platform');
 
-        res.status(201).json({ message: 'User created successfully',  data: { user: newUser } + newUser.token });
+        res.status(201).json({ message: 'User created successfully',  data: { user: newUser }});
     } catch (error) {
         console.error('Error creating user:', error);
         res.status(500).json({ message: 'Internal Server Error - createUser' });
