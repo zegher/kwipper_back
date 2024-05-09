@@ -88,10 +88,13 @@ const createUser = async (req, res) => {
         //create a token based on the date of creation
         newUser.token = await bcrypt.hash(Date.now() + email, salt);
 
+        //create a new token
+        const newToken = new Token({ token: newUser.token, user_id: newUser._id });
 
-
-
+        //save new token
+        await newToken.save();
         await newUser.save();
+        
         console.log('User created successfully:' + newUser.token);
 
         //send email to user

@@ -1,4 +1,4 @@
-const {Two} = require('../../../models/api/v1/Token');
+const {Token} = require('../../../models/api/v1/Token');
 
 // Export the createUser function
 module.exports = {
