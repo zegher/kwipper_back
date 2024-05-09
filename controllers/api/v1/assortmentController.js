@@ -4,10 +4,10 @@ const {Assortment} = require('../../../models/api/v1/Assortment');
 // create new assortment
 const createAssortment = async (req, res) => {
     try {
-        const {posted_by, art_name, art_desc, art_category, condition, size, brand, complete_set, price, available_from, available_until, location, free, premium} = req.body;
+        const {user_id, posted_by, art_name, art_desc, art_category, condition, size, brand, complete_set, price, available_from, available_until, location, free, premium} = req.body;
 
         // create new assortment
-        const newAssortment = new Assortment({ posted_by, art_name, art_desc, art_category, condition, size, brand, complete_set, price, available_from, available_until, location, free, premium});
+        const newAssortment = new Assortment({ user_id, posted_by, art_name, art_desc, art_category, condition, size, brand, complete_set, price, available_from, available_until, location, free, premium});
 
         await newAssortment.save();
 

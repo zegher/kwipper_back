@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 // schema for assortiment
 const AssortmentSchema = new Schema({
+    user_id: {
+        type: String,
+        required: true
+    },
     posted_by: {
         type: String,
         required: true

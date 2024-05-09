@@ -1,8 +1,14 @@
 const mongoose = require('mongoose');
+const { type } = require('os');
 const Schema = mongoose.Schema;
 
 // schema for user
 const UserSchema = new Schema({
+    verified: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
     first_name: {
         type: String,
         required: true

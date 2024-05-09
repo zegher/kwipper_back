@@ -85,9 +85,14 @@ const createUser = async (req, res) => {
             return res.status(400).json({ message: 'Je hebt al een account met dit groepsnummer. Vraag een nieuw wachtwoord aan of neem contact op met de helpdesk.' });
         }
 
+        //create a token based on the date of creation
+        newUser.token = await bcrypt.hash(Date.now() + email, salt);
+
+
+
 
         await newUser.save();
-
+-       console.log('User created successfully:' + newUser.token);
         //send email to user
         // await sendEmail(email, 'Welcome to our platform', 'You have successfully created an account on our platform');
 
