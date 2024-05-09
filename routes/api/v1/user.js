@@ -17,6 +17,9 @@ router.get('/:id', userController.getUserById)
 //PUT user 
 router.put('/:id', userController.putUser)
 
+//get full user
+router.get('/full/:id', userController.getFullUserById)
+
 // // // get new assortment 2
 // router.get('/two/:id', userController.getAllUsers2)
 

@@ -5,25 +5,25 @@ const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
 
 //GET user by id
-// const getUserById = async (req, res) => {
-//     try {
-//         const { id } = req.params;
+const getFullUserById = async (req, res) => {
+    try {
+        const { id } = req.params;
 
-//         if(!id) {
-//             return res.status(400).json({ message: 'User id is required' });
-//         }
-//         const user = await User.findById(id);
+        if(!id) {
+            return res.status(400).json({ message: 'User id is required' });
+        }
+        const user = await User.findById(id);
 
-//         if(!user) {
-//             return res.status(404).json({ message: 'User not found' });
-//         }
-//         res.status(200).json({ data: { user } });
-//     }
-//     catch (error) {
-//         console.error('Error getting user by id:', error);
-//         res.status(500).json({ message: 'Internal Server Error - getUserById' });
-//     }
-// };
+        if(!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.status(200).json({ data: { user } });
+    }
+    catch (error) {
+        console.error('Error getting user by id:', error);
+        res.status(500).json({ message: 'Internal Server Error - getUserById' });
+    }
+};
 
 //get user by id but only show email, first_name and last_name
 const getUserById = async (req, res) => {
@@ -177,7 +177,7 @@ const putUser = async (req, res) => {
 
 // Export the createUser function
 module.exports = {
-    createUser, getAllUsers, deleteUser, getUserById, putUser
+    createUser, getAllUsers, deleteUser, getUserById, putUser, getFullUserById
 };
 
 // getAllUsers2, createUser2,
