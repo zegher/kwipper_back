@@ -1,5 +1,5 @@
 const {User} = require('../../../models/api/v1/User');
-
+import { Token } from '../../../models/api/v1/Token';
 
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
