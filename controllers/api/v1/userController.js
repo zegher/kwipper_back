@@ -1,5 +1,6 @@
 const {User} = require('../../../models/api/v1/User');
 const { Token } = require('../../../models/api/v1/Token');
+const { mailer } = require('../../../models/api/v1/Mailer');
 
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
@@ -96,7 +97,7 @@ const createUser = async (req, res) => {
         await newUser.save();
         
         console.log('User created successfully:' + newUser.token);
-
+        mailer.sendVerificationEmail();
         //send email to user
         // await sendEmail(email, 'Welcome to our platform', 'You have successfully created an account on our platform');
 
