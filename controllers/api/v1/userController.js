@@ -85,21 +85,21 @@ const createUser = async (req, res) => {
         if(existingGroupNumber) {
             return res.status(400).json({ message: 'Je hebt al een account met dit groepsnummer. Vraag een nieuw wachtwoord aan of neem contact op met de helpdesk.' });
         }
+            newUser.token = await bcrypt.hash(Date.now() + email, salt);
 
-        //create a token based on the date of creation
-        newUser.token = await bcrypt.hash(Date.now() + email, salt);
+            //create a new token
+            const newToken = new Token({ token: newUser.token, user_id: newUser._id });
 
-        //create a new token
-        const newToken = new Token({ token: newUser.token, user_id: newUser._id });
+            //save new token
+            await newToken.save();
+            await newUser.save();
+            
+            console.log('User created successfully:' + newUser.token);
+            mailer.sendVerificationEmail();
+            //send email to user
+            await sendEmail(email, 'Welcome to our platform', 'You have successfully created an account on our platform');
 
-        //save new token
-        await newToken.save();
-        await newUser.save();
-        
-        console.log('User created successfully:' + newUser.token);
-        mailer.sendVerificationEmail();
-        //send email to user
-        // await sendEmail(email, 'Welcome to our platform', 'You have successfully created an account on our platform');
+            res.status(201).json({ message: 'User created successfully',  data: { user: newUser }});
 
         res.status(201).json({ message: 'User created successfully',  data: { user: newUser }});
     } catch (error) {

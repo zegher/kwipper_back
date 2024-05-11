@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 
 const mailer = {
     transporter: nodemailer.createTransport({
-        host: "UR_HOST",
+        host: "smtp-auth.mailprotect.be",
         secure: true,
         auth: {
                 user: process.env.EMAIL,
