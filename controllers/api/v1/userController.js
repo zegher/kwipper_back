@@ -183,10 +183,48 @@ const putUser = async (req, res) => {
     }
 };
 
+// verify user
+const verifyUser = async (req, res) => {
+    try {
+        const { token } = req.body;
+
+        if (!token) {
+            return res.status(400).json({ message: 'Token is required' });
+        }
+
+        const tokenObj = await Token.findOne({ token: token });
+
+        if (!tokenObj) {
+            return res.status(404).json({ message: 'Token not found' });
+        }
+
+        const user = await User.findById(tokenObj.user_id);
+
+        if (!user) {
+            Token.findByIdAndDelete(tokenObj._id);
+            return res.status(404).json({ message: 'User linked to token not found' });
+        }
+
+        if (user.verified) {
+            Token.findByIdAndDelete(tokenObj._id);
+            return res.status(400).json({ message: 'User already verified' });
+        }
+
+        user.verified = true;
+        await user.save();
+
+        await Token.findByIdAndDelete(tokenObj._id);
+
+        res.status(200).json({ message: 'User verified successfully' });
+    } catch (error) {
+        console.error('Error verifying token:', error);
+        res.status(500).json({ message: 'Internal Server Error - verifyToken' });
+    }
+}
 
 // Export the createUser function
 module.exports = {
-    createUser, getAllUsers, deleteUser, getUserById, putUser, getFullUserById
+    createUser, getAllUsers, deleteUser, getUserById, putUser, getFullUserById, verifyUser
 };
 
 // getAllUsers2, createUser2,
