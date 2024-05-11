@@ -1,6 +1,6 @@
 const {User} = require('../../../models/api/v1/User');
 const { Token } = require('../../../models/api/v1/Token');
-const { mailer } = require('../../../models/api/v1/Mailer');
+const  mailer  = require('../../../models/api/v1/Mailer');
 
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
