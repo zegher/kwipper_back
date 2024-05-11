@@ -17,6 +17,7 @@ const mailer = {
             subject: "Verifieer je email adres - Kwipper!",
             text: "your token is " + token,
         });
+        //fjlkdqs
     }
 }
 
