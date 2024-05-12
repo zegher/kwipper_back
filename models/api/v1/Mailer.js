@@ -1,24 +1,26 @@
-const nodemailer = require("nodemailer");
+const nodemailer = require('nodemailer');
 
 const mailer = {
     transporter: nodemailer.createTransport({
-        host: "smtp-auth.mailprotect.be",
+        host: process.env.EMAIL_HOST,
         secure: true,
         auth: {
-                user: process.env.EMAIL,
-                pass: process.env.EMAIL_PASSWORD
+            user: process.env.EMAIL,
+            pass: process.env.EMAIL_PASSWORD
         }
     }),
 
-   sendVerificationEmail: async (email, token) => {
-        await mailer.transporter.sendMail({
-            from: process.env.EMAIL,
-            to: email,
-            subject: "Verifieer je email adres - Kwipper!",
-            text: "your token is " + token,
-        });
-        //fjlkdqs
-    }
-}
+    async sendVerificationEmail(email, token) {
+        const url = 'YOUR_FRONTEND_VERIFICATION_URL_HERE'
+
+            this.transporter.sendMail({
+                from: process.env.EMAIL,
+                to: email,
+                subject: 'Verify your email | Kwipper',
+                text: `Please click on the following link to verify your email: ${url}?token=${token}`,
+                html: `<p>Please click on the following link to verify your email: <a href="${url}?token=${token}">Verify Email</a></p>`
+            });
+        }
+    };
 
 module.exports = mailer;

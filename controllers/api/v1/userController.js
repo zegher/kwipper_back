@@ -95,10 +95,11 @@ const createUser = async (req, res) => {
             await newUser.save();
             
             console.log('User created successfully:' + newUser.token);
-            mailer.sendVerificationEmail();
+            // mailer.sendVerificationEmail();
             //send email to user
-            await sendEmail(email, 'Welcome to our platform', 'You have successfully created an account on our platform');
-
+            //send email from mailer
+            mailer.sendVerificationEmail(email, newUser.token);
+            
             res.status(201).json({ message: 'User created successfully',  data: { user: newUser }});
 
         res.status(201).json({ message: 'User created successfully',  data: { user: newUser }});
