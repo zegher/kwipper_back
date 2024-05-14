@@ -23,10 +23,4 @@ router.get('/full/:id', userController.getFullUserById)
 //post verify user
 router.post('/verify-email', userController.verifyUser)
 
-// // // get new assortment 2
-// router.get('/two/:id', userController.getAllUsers2)
-
-// // // post new assortment 2
-// router.post('/two', userController.createUser2)
-
 module.exports = router

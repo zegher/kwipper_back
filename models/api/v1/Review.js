@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 // schema for review
 const ReviewSchema = new Schema({
     posted_by: {
-        type: String,
+        type: Schema.Types.ObjectId,
         required: true
     },
     user_reviewed: {
