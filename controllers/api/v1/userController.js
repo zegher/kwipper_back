@@ -101,8 +101,6 @@ const createUser = async (req, res) => {
             mailer.sendVerificationEmail(email, newUser.token);
             
             res.status(201).json({ message: 'User created successfully',  data: { user: newUser }});
-
-        res.status(201).json({ message: 'User created successfully',  data: { user: newUser }});
     } catch (error) {
         console.error('Error creating user:', error);
         res.status(500).json({ message: 'Internal Server Error - createUser' });
