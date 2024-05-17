@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-
+//fjlkqsjdflk
 const mailer = {
     transporter: nodemailer.createTransport({
         host: process.env.EMAIL_HOST,
@@ -16,9 +16,9 @@ const mailer = {
             this.transporter.sendMail({
                 from: process.env.EMAIL,
                 to: email,
-                subject: 'Verify your email | Kwipper',
-                text: `Please click on the following link to verify your email: ${url}?token=${token}`,
-                html: `<p>Please click on the following link to verify your email: <a href="${url}?token=${token}">Verify Email</a></p>`
+                subject: 'Verifieer jouw email | Kwipper',
+                text: `Klik op de volgende link op jouw e-mail te verifieren: ${url}?token=${token}`,
+                html: `<p>Klik op de volgende link op jouw e-mail te verifieren: <br> <br>  <a href="${url}?token=${token}">Verify Email</a></p>`
             });
         }
     };

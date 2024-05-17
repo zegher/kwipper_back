@@ -66,11 +66,6 @@ const createUser = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        //if user first_name = admin, give error
-        // if(first_name === 'admin') {
-        //     return res.status(400).json({ message: 'Invalid first name' });
-        // };
-
         // create new user with hashed password
         const newUser = new User({ first_name, last_name, email, phone, password: hashedPassword, role, what_jeugdbeweging, jb_name, group_number, verenigiging_name, has_ondnr, ondnr, straatnaam, huisnummer, postcode, gemeente});
 
@@ -95,44 +90,14 @@ const createUser = async (req, res) => {
             await newUser.save();
             
             console.log('User created successfully:' + newUser.token);
-            // mailer.sendVerificationEmail();
-            //send email to user
-            //send email from mailer
             mailer.sendVerificationEmail(email, newUser.token);
-            
-            res.status(201).json({ message: 'User created successfully',  data: { user: newUser }});
 
-        res.status(201).json({ message: 'User created successfully',  data: { user: newUser }});
+            res.status(201).json({ message: 'User created successfully',  data: { user: newUser }});
     } catch (error) {
         console.error('Error creating user:', error);
         res.status(500).json({ message: 'Internal Server Error - createUser' });
     }
 };
-
- //send email to user
-// const sendEmail = async (email, subject, text) => {
-//     try {
-//         const transporter = nodemailer.createTransport({
-//             service: 'hotmail',
-//             port: 587,
-//             secure: false,
-//             auth: {
-//                 user: 'zegherb@hotmail.com',
-//                 pass: 'azerty'
-//             }
-//         }); 
-
-//         await transporter.sendMail({
-//             from: 'username',
-//             to: email,
-//             subject: subject,
-//             text: text
-//         });
-//     } catch (error) {
-//         console.error('Error sending email:', error);
-//     }
-// };
-
 
 //detete user based on id
 const deleteUser = async (req, res) => {
