@@ -17,8 +17,8 @@ const mailer = {
                 from: process.env.EMAIL,
                 to: email,
                 subject: 'Verifieer jouw email | Kwipper',
-                text: `Klik op de volgende link op jouw e-mail te verifieren: ${url}?token=${token}`,
-                html: `<p>Klik op de volgende link op jouw e-mail te verifieren: <br> <br>  <a href="${url}?token=${token}">Verify Email</a></p>`
+                text: `Hey! Je moet nog één ding doen voor je kan beginnen broswen! Klik op de volgende link op jouw e-mail te verifieren: ${url}?token=${token} Hopelijk tot snel! Groetjes het Kwipper-team!`,
+                html: `<p>Hey! <br> <br> Je moet nog één ding doen voor je kan beginnen browsen! <br> <br> Klik op de volgende link op jouw e-mail te verifieren: <br> <br>  <a href="${url}?token=${token}">Verify Email</a> <br> <br> Hopelijk tot snel! <br> Groetjes het Kwipper-team! </p>`
             });
         }
     };
