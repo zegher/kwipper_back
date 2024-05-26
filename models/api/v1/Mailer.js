@@ -24,4 +24,4 @@ const mailer = {
     };
 
 module.exports = mailer;
-//mail send should now come from  hallo@kwipper.be - 26/05/2024
+//mail send should now come from  hallo@kwipper.be - 26/05/2024 (poging 2)
