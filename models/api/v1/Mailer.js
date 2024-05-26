@@ -24,3 +24,4 @@ const mailer = {
     };
 
 module.exports = mailer;
+//mail send should now be hallo@kwipper.be
