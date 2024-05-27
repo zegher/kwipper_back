@@ -9,7 +9,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // middleware
-app.use(cors({origin: 'https://kwipper-frontend.onrender.com'}));
+app.use(cors({origin: 'https://www.kwipper.be'}));
 app.use(express.json());
 
 // connect to database
