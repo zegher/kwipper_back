@@ -3,6 +3,12 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const { image } = require('express-fileupload'); 
+
+app.use(fileUpload({
+    limits: { fileSize: 50 * 1024 * 1024 },
+    abortOnLimit: true,
+}));
 
 // create express app
 const app = express();
