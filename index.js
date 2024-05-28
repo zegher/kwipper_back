@@ -5,11 +5,6 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const { image } = require('express-fileupload'); 
 
-app.use(fileUpload({
-    limits: { fileSize: 50 * 1024 * 1024 },
-    abortOnLimit: true,
-}));
-
 // create express app
 const app = express();
 const port = process.env.PORT || 3000;
@@ -29,6 +24,11 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
     console.log('Connected to database');
 });
+
+app.use(fileUpload({
+    limits: { fileSize: 50 * 1024 * 1024 },
+    abortOnLimit: true,
+}));
 
 // routes
 const usersRouter = require('./routes/api/v1/user');
