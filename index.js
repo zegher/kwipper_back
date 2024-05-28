@@ -38,6 +38,9 @@ app.use('/api/v1/reviews', reviewsRouter);
 app.use('/api/v1/two', twoAssortmentRouter);
 app.use('/api/v1/token', tokenRouter);
 
+app.use(express.static('public'));
+app.use('/images', express.static('images'));
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
