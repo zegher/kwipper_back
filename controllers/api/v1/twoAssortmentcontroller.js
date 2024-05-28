@@ -22,13 +22,14 @@ const createAssortment2 = async (req, res) => {
         // }
 
         const { image } = req.files;
+        const url  = req.protocol + '://' + req.get('host') + '/images/' + image.name;
         // if (!image) return res.sendStatus(400); //image not required so not needed yet
         // If doesn't have image mime type prevent from uploading
         if (!/^image/.test(image.mimetype)) return res.sendStatus(400);
         image.mv('../../../images/' + image.name);
 
         const newAssortment = await Two.create({
-            item, user, price, waarborg, available_from, available_until, art_desc, art_category, condition, size, brand, complete_set, free, premium, posted_by, location 
+            item, user, url, price, waarborg, available_from, available_until, art_desc, art_category, condition, size, brand, complete_set, free, premium, posted_by, location 
         });
 
         res.status(201).json({ data: { assortment: newAssortment } });
