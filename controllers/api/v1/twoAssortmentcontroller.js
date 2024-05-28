@@ -1,5 +1,6 @@
 // const {Twoassortment} = require('../../../models/api/v1/Two');
 const {Two} = require('../../../models/api/v1/Two');
+const { image } = require('express-fileupload'); // Add this line
 
 //get all assortment based on tester model
 const getAss2 = async (req, res) => {
