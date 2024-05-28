@@ -8,6 +8,11 @@ const TwoassortmentSchema = new Schema({
             type: String,
             required: false
         },
+        //save picture
+        art_picture: {
+            type: String,
+            required: false
+        },
         price: {
             type: Number,
             required: false
