@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const userController = require('../../../controllers/api/v1/userController')
-const shoppingCartRouter = require('./shoppingCart')
+const shoppingCartRouter = require('./shoppingcart')
 
 // POST new user
 router.post('/', userController.createUser)
