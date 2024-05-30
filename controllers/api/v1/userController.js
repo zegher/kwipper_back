@@ -5,6 +5,8 @@ const  mailer  = require('../../../models/api/v1/Mailer');
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
 
+const jwt = require('jsonwebtoken');
+
 //GET user by id
 const getFullUserById = async (req, res) => {
     try {
@@ -187,11 +189,37 @@ const verifyUser = async (req, res) => {
         console.error('Error verifying token:', error);
         res.status(500).json({ message: 'Internal Server Error - verifyToken' });
     }
-}
+};
+
+const loginUser = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        if (!email || !password) {
+            return res.status(400).json({ message: 'Email and password are required' });
+        }
+
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ message: 'Invalid credentials' });
+        }
+
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.status(200).json({ token });
+    } catch (error) {
+        console.error('Error logging in user:', error);
+        res.status(500).json({ message: 'Internal Server Error - loginUser' });
+    }
+};
+
 
 // Export the createUser function
 module.exports = {
-    createUser, getAllUsers, deleteUser, getUserById, putUser, getFullUserById, verifyUser
+    createUser, getAllUsers, deleteUser, getUserById, putUser, getFullUserById, verifyUser, loginUser 
 };
 
 // getAllUsers2, createUser2,

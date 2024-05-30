@@ -23,4 +23,7 @@ router.get('/full/:id', userController.getFullUserById)
 //post verify user
 router.post('/verify-email', userController.verifyUser)
 
+//post login user
+router.post('/login', userController.loginUser);
+
 module.exports = router
