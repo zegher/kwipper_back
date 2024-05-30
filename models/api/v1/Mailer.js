@@ -1,5 +1,4 @@
 const nodemailer = require('nodemailer');
-//fjlkqsjdflk
 const mailer = {
     transporter: nodemailer.createTransport({
         host: process.env.EMAIL_HOST,

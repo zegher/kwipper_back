@@ -15,7 +15,7 @@ const getAss2 = async (req, res) => {
 //create new assortment based on two model
 const createAssortment2 = async (req, res) => {
     try {
-        const { art_name, price, waarborg, available_from, available_until, art_desc, art_category, condition, size, brand, complete_set, free, premium, posted_by, location } = req.body;
+        const { art_name, price, waarborg, available_from, available_until, art_desc, art_category, condition, size, brand, complete_set, free, premium, user_id, posted_by, location } = req.body;
 
         const { art_picture } = req.files;
         
@@ -46,6 +46,7 @@ const createAssortment2 = async (req, res) => {
                 premium
             },
             user: {
+                user_id,
                 posted_by,
                 location
             },
