@@ -31,7 +31,7 @@ router.use('/:userId/shopping-cart', (req, res, next) => {
     next()
 }, shoppingCartRouter)
 
-// wishlist router
+// wishlist routerr
 router.use('/:userId/wishlist', (req, res, next) => {
     req.userId = req.params.userId
     next()
