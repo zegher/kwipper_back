@@ -64,14 +64,15 @@ const TwoassortmentSchema = new Schema({
         }
     },
     user: {
+        // user_id: {
+        //     type: Schema.Types.ObjectId,
+        //     required: true
+        // },
 
-        //posted by is the user id from the user collection
-        //user id is the same as the user id in the user collection
         user_id: {
-            type: Schema.Types.ObjectId,
+            type: String,
             required: true
         },
-
         posted_by: {
             type: String,
             required: true
