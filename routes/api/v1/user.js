@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const userController = require('../../../controllers/api/v1/userController')
 const shoppingCartRouter = require('./shoppingcart')
+const wishlistController = require('./wishlist')
 
 // POST new user
 router.post('/', userController.createUser)
@@ -29,5 +30,11 @@ router.use('/:userId/shopping-cart', (req, res, next) => {
     req.userId = req.params.userId
     next()
 }, shoppingCartRouter)
+
+// wishlist router
+router.use('/:userId/wishlist', (req, res, next) => {
+    req.userId = req.params.userId
+    next()
+}, wishlistController)
 
 module.exports = router
