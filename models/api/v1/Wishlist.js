@@ -4,10 +4,10 @@ const Schema = mongoose.Schema;
 
 // schema for shoppingCart
 const WishlistItem = new Schema({
-    amount: {
-        type: Number,
-        required: true
-    },
+    // amount: {
+    //     type: Number,
+    //     required: true
+    // },
     product_id: {
         type: Schema.Types.ObjectId,
         required: true
