@@ -3,6 +3,9 @@ const bcrypt = require('bcryptjs');
 const { type } = require('os');
 const Schema = mongoose.Schema;
 const { ShoppingCartItemSchema } = require('./ShoppingCartItem');
+const { WishlistItem } = require('./Wishlist');
+
+
 
 // schema for user
 const UserSchema = new Schema({
@@ -75,7 +78,7 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    wish_list: [],
+    wish_list: [WishlistItem],
     shopping_cart: [ShoppingCartItemSchema],
 });
 
