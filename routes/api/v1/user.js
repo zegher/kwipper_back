@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const userController = require('../../../controllers/api/v1/userController')
+const shoppingCartRouter = require('./shoppingCart')
 
 // POST new user
 router.post('/', userController.createUser)
@@ -22,5 +23,11 @@ router.get('/full/:id', userController.getFullUserById)
 
 //post verify user
 router.post('/verify-email', userController.verifyUser)
+
+// shopping cart router
+router.use('/:userId/shopping-cart', (req, res, next) => {
+    req.userId = req.params.userId
+    next()
+}, shoppingCartRouter)
 
 module.exports = router
