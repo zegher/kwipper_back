@@ -15,14 +15,41 @@ const getAss2 = async (req, res) => {
 //create new assortment based on two model
 const createAssortment2 = async (req, res) => {
     try {
-        const { item, user, price, waarborg, available_from, available_until, art_desc, art_category, condition, size, brand, complete_set, free, premium, posted_by, location } = req.body;
+        const { art_name, price, waarborg, available_from, available_until, art_desc, art_category, condition, size, brand, complete_set, free, premium, user_id, posted_by, location } = req.body;
 
-        // if(!name || !description || !price || !quantity || !image || !posted_by) {
-        //     return res.status(400).json({ message: 'All fields are required' });
-        // }
+        const { art_picture } = req.files;
+        
+        if (!art_picture) return res.status(400).json({ message: 'Image is required' });
+
+        // If doesn't have image mime type prevent from uploading
+        if (!/^image/.test(art_picture.mimetype)) return res.sendStatus(400);
+
+        const newName = Date.now() + art_picture.name.replace(/ /g, '_');
+
+        art_picture.mv(__dirname + '/../../../images/' + newName);
+        const url  = req.protocol + '://' + req.get('host') + '/images/' + newName;
 
         const newAssortment = await Two.create({
-            item, user, price, waarborg, available_from, available_until, art_desc, art_category, condition, size, brand, complete_set, free, premium, posted_by, location 
+            item: {
+                art_name,
+                art_picture: url, 
+                price, 
+                waarborg, 
+                available_from, 
+                available_until, 
+                art_desc, 
+                art_category, 
+                condition, 
+                size, brand, 
+                complete_set, 
+                free, 
+                premium
+            },
+            user: {
+                user_id,
+                posted_by,
+                location
+            },
         });
 
         res.status(201).json({ data: { assortment: newAssortment } });

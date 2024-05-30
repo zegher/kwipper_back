@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const { type } = require('os');
 const Schema = mongoose.Schema;
+const { ShoppingCartItemSchema } = require('./ShoppingCartItem');
 
 // schema for user
 const UserSchema = new Schema({
@@ -73,7 +74,9 @@ const UserSchema = new Schema({
     gemeente: {
         type: String,
         required: true
-    }
+    },
+    wish_list: [],
+    shopping_cart: [ShoppingCartItemSchema],
 });
 
 

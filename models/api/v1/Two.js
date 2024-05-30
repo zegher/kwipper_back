@@ -8,6 +8,11 @@ const TwoassortmentSchema = new Schema({
             type: String,
             required: false
         },
+        //save picture
+        art_picture: {
+            type: String,
+            required: false
+        },
         price: {
             type: Number,
             required: false
@@ -59,17 +64,22 @@ const TwoassortmentSchema = new Schema({
         }
     },
     user: {
+        // user_id: {
+        //     type: Schema.Types.ObjectId,
+        //     required: true
+        // },
 
-        //posted by is the user id from the user collection
-        
-
+        user_id: {
+            type: String,
+            required: true
+        },
         posted_by: {
             type: String,
-            required: false
+            required: true
         },
         location: {
             type: String,
-            required: false
+            required: true
         },
     }
 });
