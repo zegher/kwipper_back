@@ -10,7 +10,7 @@ const fileUpload = require('express-fileupload');
 // create express app
 const app = express();
 const port = process.env.PORT || 3000;
-const mongodbUri = process.env.MONGODB_URI;
+
 
 // middleware
 app.use(cors({origin: 'https://www.kwipper.be'}));
@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 // connect to database
-mongoose.connect(mongodbUri, {
+mongoose.connect(process.env.MONGODB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
