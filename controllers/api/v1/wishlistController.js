@@ -5,7 +5,7 @@ const { User } = require('../../../models/api/v1/User');
 const getWishlist = async (req, res) => {
     try {
         const user = await User.findById(req.user._id).populate('wishlist');
-        res.status(200).send(user.wishlist);
+        res.status(200).send(user.wish_list);
     } catch (error) {
         res.status(500).send(error);
     }
@@ -54,13 +54,13 @@ const deleteWishlistItem = async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        const wishlistItem = user.wishlist.id(id);
+        const wishlistItem = user.wish_list.id(id);
 
         if (!wishlistItem) {
             return res.status(404).json({ message: 'Wishlist item not found' });
         }
 
-        wishlistItem.remove();
+        user.wish_list.pull(id);
 
         await user.save();
 
