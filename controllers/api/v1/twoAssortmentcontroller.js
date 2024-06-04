@@ -1,4 +1,5 @@
 // const {Twoassortment} = require('../../../models/api/v1/Two');
+const { count } = require('console');
 const {Two} = require('../../../models/api/v1/Two');
 
 //get all assortment based on tester model
@@ -16,23 +17,31 @@ const getAss2 = async (req, res) => {
 const createAssortment2 = async (req, res) => {
     try {
         const { art_name, price, waarborg, available_from, available_until, art_desc, art_category, condition, size, brand, complete_set, free, premium, user_id, posted_by, location } = req.body;
-
-        const { art_picture } = req.files;
         
-        if (!art_picture) return res.status(400).json({ message: 'Image is required' });
+        // if(count(req.files) === 0) return res.status(400).json({ message: 'No files were uploaded' });
 
-        // If doesn't have image mime type prevent from uploading
-        if (!/^image/.test(art_picture.mimetype)) return res.sendStatus(400);
+        const pictures = [];
 
-        const newName = Date.now() + art_picture.name.replace(/ /g, '_');
+        for (const key in req.files) {
+            const art_picture = req.files[key];
 
-        art_picture.mv(__dirname + '/../../../images/' + newName);
-        const url  = req.protocol + '://' + req.get('host') + '/images/' + newName;
+            // If doesn't have image mime type prevent from uploading
+            if (!/^image/.test(art_picture.mimetype)) return res.sendStatus(400);
+
+            const newName = Date.now() + art_picture.name.replace(/ /g, '_');
+
+            art_picture.mv(__dirname + '/../../../images/' + newName);
+            const url  = req.protocol + '://' + req.get('host') + '/images/' + newName;
+
+            console.log(req.files[key]);
+
+            pictures.push(url);
+        }
 
         const newAssortment = await Two.create({
             item: {
                 art_name,
-                art_picture: url, 
+                pictures, 
                 price, 
                 waarborg, 
                 available_from, 

@@ -6,7 +6,6 @@ const { ShoppingCartItemSchema } = require('./ShoppingCartItem');
 const { WishlistItem } = require('./Wishlist');
 
 
-
 // schema for user
 const UserSchema = new Schema({
     verified: {
