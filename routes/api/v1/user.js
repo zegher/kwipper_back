@@ -31,6 +31,8 @@ router.use('/:userId/shopping-cart', (req, res, next) => {
     next()
 }, shoppingCartRouter)
 
+//post login user
+router.post('/login', userController.loginUser);
 // wishlist routerr
 router.use('/:userId/wishlist', (req, res, next) => {
     req.userId = req.params.userId

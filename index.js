@@ -3,15 +3,19 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const bodyParser = require('body-parser');
+
 const fileUpload = require('express-fileupload'); 
 
 // create express app
 const app = express();
 const port = process.env.PORT || 3000;
 
+
 // middleware
 app.use(cors({origin: 'https://www.kwipper.be'}));
 app.use(express.json());
+app.use(bodyParser.json());
 
 // connect to database
 mongoose.connect(process.env.MONGODB, {
@@ -35,7 +39,8 @@ const usersRouter = require('./routes/api/v1/user');
 const assortmentRouter = require('./routes/api/v1/assortment');
 const reviewsRouter = require('./routes/api/v1/review');
 const twoAssortmentRouter = require('./routes/api/v1/twoassortment');
-const tokenRouter = require("./routes/api/v1/token");   
+const tokenRouter = require("./routes/api/v1/token"); 
+  
 
 // route handlers
 app.use('/api/v1/user', usersRouter);
