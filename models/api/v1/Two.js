@@ -1,15 +1,13 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const { PictureItem } = require('./Pics');
 
 // schema for assortiment
 const TwoassortmentSchema = new Schema({
     item: {
+        pictures: [],
+
         art_name: {
-            type: String,
-            required: false
-        },
-        //save picture
-        art_picture: {
             type: String,
             required: false
         },
