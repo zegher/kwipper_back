@@ -209,7 +209,12 @@ const loginUser = async (req, res) => {
         }
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.status(200).json({ token });
+
+        // Exclude sensitive data
+        const userResponse = user.toObject();
+        delete userResponse.password;
+
+        res.status(200).json({ token, user: userResponse });
     } catch (error) {
         console.error('Error logging in user:', error);
         res.status(500).json({ message: 'Internal Server Error - loginUser' });
