@@ -109,7 +109,7 @@ const getAssortmentByUser = async (req, res) => {
         if(!posted_by) {
             return res.status(400).json({ message: 'User id is required' });
         }
-        const assortment = await Two.find({ 'user.posted_by': posted_by });
+        const assortment = await Two.find({ 'user.user_id': posted_by });
         res.status(200).json({ data: { assortment } });
     } catch (error) {
         console.error('Error getting assortment by user:', error);
