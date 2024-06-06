@@ -35,7 +35,7 @@ const getUserById = async (req, res) => {
         if(!id) {
             return res.status(400).json({ message: 'User id is required' });
         }
-        const user = await User.findById(id).select('email first_name last_name gemeente rating role');
+        const user = await User.findById(id).select('email first_name last_name jb_name gemeente rating role');
         if(!user) {
             return res.status(404).json({ message: 'User not found' });
         }
