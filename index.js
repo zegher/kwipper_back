@@ -14,7 +14,7 @@ const port = process.env.PORT || 3000;
 
 // middleware
 //app.use(cors({origin: 'http://localhost:5173'}));
-app.use(cors({origin: 'https://kwipper-back.onrender.com/'}));
+app.use(cors({origin: 'https://kwipper-back.onrender.com'}));
 app.use(express.json());
 app.use(bodyParser.json());
 
