@@ -16,7 +16,7 @@ const getAss2 = async (req, res) => {
 //create new assortment based on two model
 const createAssortment2 = async (req, res) => {
     try {
-        const { item, user, art_name, price, waarborg, available_from, available_until, art_desc, art_category, condition, size, brand, complete_set, free, premium, user_id, posted_by, location } = req.body;
+        const {art_name, price, waarborg, available_from, available_until, art_desc, art_category, condition, size, brand, complete_set, free, premium, user_id, posted_by, location } = req.body;
         
         // if(count(req.files) === 0) return res.status(400).json({ message: 'No files were uploaded' });
 
