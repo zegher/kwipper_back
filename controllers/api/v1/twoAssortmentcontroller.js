@@ -39,7 +39,7 @@ const createAssortment2 = async (req, res) => {
         }
 
         const newAssortment = await Two.create({
-            item,user,
+            item: [
                 art_name,
                 pictures, 
                 price, 
@@ -53,12 +53,13 @@ const createAssortment2 = async (req, res) => {
                 complete_set, 
                 free, 
                 premium,
-            
-            
+            ],
+
+            user: [
                 user_id,
                 posted_by,
                 location
-            
+            ]            
         });
 
         res.status(201).json({ data: { assortment: newAssortment } });
@@ -116,6 +117,8 @@ const getAssortmentByUser = async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error - getAssortmentByUser' });
     }
 }
+
+//change assortment by id
 
 // Export the createUser function
 module.exports = {
