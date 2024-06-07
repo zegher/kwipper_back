@@ -40,25 +40,26 @@ const createAssortment2 = async (req, res) => {
 
         const newAssortment = await Two.create({
             item: {
-                art_name,
-                pictures, 
-                price, 
-                waarborg, 
-                available_from, 
-                available_until, 
-                art_desc, 
-                art_category, 
-                condition, 
-                size, brand, 
-                complete_set, 
-                free, 
-                premium,
+                art_name: art_name,
+                pictures: pictures, 
+                price: price, 
+                waarborg: waarborg, 
+                available_from: available_from, 
+                available_until: available_until, 
+                art_desc: art_desc, 
+                art_category: art_category, 
+                condition: condition, 
+                size: size, 
+                brand: brand, 
+                complete_set: complete_set, 
+                free: free, 
+                premium: premium,
             },
 
             user: {
-                user_id,
-                posted_by,
-                location
+                user_id: user_id,
+                posted_by: posted_by,
+                location: location
             }      
         });
 
