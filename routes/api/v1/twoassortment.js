@@ -16,4 +16,7 @@ router.delete('/:id', TwoassortmentController.deleteAssortment)
 
 router.get('/user/:posted_by', TwoassortmentController.getAssortmentByUser)
 
+//post image
+router.post('/image/:id', TwoassortmentController.postImage)
+
 module.exports = router
