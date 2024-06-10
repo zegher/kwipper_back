@@ -1,7 +1,7 @@
 // const {Twoassortment} = require('../../../models/api/v1/Two');
 const { count } = require('console');
 const {Two} = require('../../../models/api/v1/Two');
-const fs = require('fs');
+
 //get all assortment based on tester model
 const getAss2 = async (req, res) => {
     try{
@@ -21,11 +21,6 @@ const createAssortment2 = async (req, res) => {
         // if(count(req.files) === 0) return res.status(400).json({ message: 'No files were uploaded' });
 
         const pictures = [];
-
-        // Create folder images in the root directory if it doesn't exist
-        // if (!fs.existsSync(__dirname + '/../../../images')) {
-        //     fs.mkdirSync(__dirname + '/../../../images');
-        // }
 
         for (const key in req.files) {
             const art_picture = req.files[key];
@@ -130,11 +125,6 @@ const postImage = async (req, res) => {
         const { id } = req.params;
         const pictures = [];
 
-        // Create folder images in the root directory if it doesn't exist
-        // if (!fs.existsSync(__dirname + '/../../../images')) {
-        //     fs.mkdirSync(__dirname + '/../../../images');
-        // }
-
         for (const key in req.files) {
             const art_picture = req.files[key];
 
@@ -143,7 +133,7 @@ const postImage = async (req, res) => {
 
             const newName = Date.now() + art_picture.name.replace(/ /g, '_');
 
-            art_picture.mv('/var/data' + newName);
+            art_picture.mv(__dirname + '/../../../images/' + newName);
             const url  = req.protocol + '://' + req.get('host') + '/images/' + newName;
 
             console.log(req.files[key]);
