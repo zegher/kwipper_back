@@ -16,7 +16,7 @@ const getAss2 = async (req, res) => {
 //create new assortment based on two model
 const createAssortment2 = async (req, res) => {
     try {
-        const {art_name, price, waarborg, available_from, available_until, art_desc, art_category, condition, size, brand, complete_set, free, premium, user_id, posted_by, location } = req.body;
+        const {item, user, art_name, price, waarborg, available_from, available_until, art_desc, art_category, condition, size, brand, complete_set, free, premium, user_id, posted_by, location } = req.body;
         
         // if(count(req.files) === 0) return res.status(400).json({ message: 'No files were uploaded' });
 
@@ -38,29 +38,27 @@ const createAssortment2 = async (req, res) => {
             pictures.push(url);
         }
 
-        const newAssortment = await Two.create({
-            item: {
-                art_name: art_name,
-                pictures: pictures, 
-                price: price, 
-                waarborg: waarborg, 
-                available_from: available_from, 
-                available_until: available_until, 
-                art_desc: art_desc, 
-                art_category: art_category, 
-                condition: condition, 
-                size: size, 
-                brand: brand, 
-                complete_set: complete_set, 
-                free: free, 
-                premium: premium,
-            },
-
-            user: {
-                user_id: user_id,
-                posted_by: posted_by,
-                location: location
-            }      
+         const newAssortment = await Two.create({
+            item,user,
+                art_name,
+                pictures, 
+                price, 
+                waarborg, 
+                available_from, 
+                available_until, 
+                art_desc, 
+                art_category, 
+                condition, 
+                size, brand, 
+                complete_set, 
+                free, 
+                premium,
+            
+            
+                user_id,
+                posted_by,
+                location
+            
         });
 
         res.status(201).json({ data: { assortment: newAssortment } });
