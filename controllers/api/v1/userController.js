@@ -79,7 +79,7 @@ const createUser = async (req, res) => {
 
         //if group number already is used, give a message saying "Je hebt al een account met dit groepsnummer. Vraag een nieuw wachtwoord aan of neem contact op met de helpdesk."
         const existingGroupNumber = await User.findOne({ group_number });
-        if(existingGroupNumber) {
+        if(existingGroupNumber && existingGroupNumber.group_number !== '') {
             return res.status(400).json({ message: 'Je hebt al een account met dit groepsnummer. Vraag een nieuw wachtwoord aan of neem contact op met de helpdesk.' });
         }
             newUser.token = await bcrypt.hash(Date.now() + email, salt);
